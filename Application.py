@@ -7,6 +7,35 @@ import matplotlib.pyplot as plt
 import os
 import seaborn as sns
 
+from selenium import webdriver 
+from selenium.webdriver.common.by import By 
+
+options = webdriver.ChromeOptions() 
+options.add_argument("--headless=new") 
+driver = webdriver.Chrome(options=options)
+
+driver.get('https://www.expat-dakar.com/appartements-meubles?page=6')
+containers = driver.find_elements(By.CSS_SELECTOR, "[class= 'listings-cards__list-item']")
+len(containers)
+
+data = []
+for container in containers : 
+    try:
+
+        details = container.find_element(By.CLASS_NAME, 'product__description').text
+       
+        price = container.find_element(By.CLASS_NAME, 'product__title').text.replace('GH₵ ', '').replace(',','')
+
+        location = container.find_element(By.CLASS_NAME, 'product__location').text
+    
+        condition = container.find_element(By.CSS_SELECTOR, "[class= 'product__tags flex wrap']").text                         
+        dic = {'details':details, 'price':price, 'location':location, 'condition': condition}
+        data.append(dic)
+    except:
+        pass
+d=pd.DataFrame(data)
+st.dataframe(d)
+
 st.markdown("""
 Cette application est conçu pour collecter les données sur le site [Expat-Dakar](https://www.expat-dakar.com/)
  en suivant ces liens :[Les appatements meublés](https://www.expat-dakar.com/appartements-meubles)--
@@ -155,7 +184,6 @@ def appartmeubles(nombre):
           except:
               pass
   df=pd.DataFrame(la_liste)
- 
   return df
 
 # Les filtres des DF
