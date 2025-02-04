@@ -7,35 +7,6 @@ import matplotlib.pyplot as plt
 import os
 import seaborn as sns
 
-from selenium import webdriver 
-from selenium.webdriver.common.by import By 
-
-options = webdriver.ChromeOptions() 
-options.add_argument("--headless=new") 
-driver = webdriver.Chrome(options=options)
-
-driver.get('https://www.expat-dakar.com/appartements-meubles?page=6')
-containers = driver.find_elements(By.CSS_SELECTOR, "[class= 'listings-cards__list-item']")
-len(containers)
-
-data = []
-for container in containers : 
-    try:
-
-        details = container.find_element(By.CLASS_NAME, 'product__description').text
-       
-        price = container.find_element(By.CLASS_NAME, 'product__title').text.replace('GH₵ ', '').replace(',','')
-
-        location = container.find_element(By.CLASS_NAME, 'product__location').text
-    
-        condition = container.find_element(By.CSS_SELECTOR, "[class= 'product__tags flex wrap']").text                         
-        dic = {'details':details, 'price':price, 'location':location, 'condition': condition}
-        data.append(dic)
-    except:
-        pass
-d=pd.DataFrame(data)
-st.dataframe(d)
-
 st.markdown("""
 Cette application est conçu pour collecter les données sur le site [Expat-Dakar](https://www.expat-dakar.com/)
  en suivant ces liens :[Les appatements meublés](https://www.expat-dakar.com/appartements-meubles)--
@@ -78,6 +49,12 @@ st.markdown('''<style> .stButton>button {
     height: 1em;
     width: 20em;
 }</style>''', unsafe_allow_html=True)
+
+url2=f'https://www.expat-dakar.com/terrains-a-vendre?page=1'
+page=get(url2)
+soup=BeautifulSoup(page.text,'html.parser')
+soup2=soup.find_all('div',class_= 'listings-cards__list-item')
+st.code(soup2[0])
 
 
 st.markdown("<h1 style='text-align: center; color: black;'>PROJET DE DATA COLLECTION</h1>", unsafe_allow_html=True)
