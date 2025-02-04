@@ -3,7 +3,6 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from requests import get
 import warnings
-from plotly import express as px
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import os
