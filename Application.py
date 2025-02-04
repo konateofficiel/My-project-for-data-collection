@@ -17,9 +17,9 @@ Cette application est conçu pour collecter les données sur le site [Expat-Daka
 
 """)
 
-df1=pd.read_csv('data/Dn/Appartements_a_louer.csv')
-df2=pd.read_csv('data/Dn/Appartements_meubles.csv')
-df3=pd.read_csv('data/Dn/Terrains.csv')
+df1=pd.read_csv('Dn/Appartements_a_louer.csv')
+df2=pd.read_csv('Dn/Appartements_meubles.csv')
+df3=pd.read_csv('Dn/Terrains.csv')
 
 def trie(df,ad):
     with st.sidebar.header('LES ADRESSES DE CHOIX'):
@@ -194,16 +194,16 @@ with st.form('RECHERCHE D''INFORMATION'):
 
         
 st.markdown("<h3 style='text-align: center; color: black;'>LES DONNEES NETTOYEES ET SAUVEGARDEES</h3>", unsafe_allow_html=True)
-charge(pd.read_csv('data/Dn/Appartements_meubles.csv'), 'APPARTEMENTS MEUBLES', '1')
-charge(pd.read_csv('data/Dn/Appartements_a_louer.csv'), 'APPARTEMENTS A LOUER', '2')
-charge(pd.read_csv('data/Dn/Terrains.csv'), 'TERRAINS A LOUER', '3')
+charge(pd.read_csv('Dn/Appartements_meubles.csv'), 'APPARTEMENTS MEUBLES', '1')
+charge(pd.read_csv('Dn/Appartements_a_louer.csv'), 'APPARTEMENTS A LOUER', '2')
+charge(pd.read_csv('Dn/Terrains.csv'), 'TERRAINS A LOUER', '3')
 
 
 st.markdown("<h3 style='text-align: center; color: black;'>LES DONNEES NON NETTOYES ET SAUVEGARDEES</h3>", unsafe_allow_html=True)
 
-charge(pd.read_csv('data/Db/Appartements_meubles.csv'), 'APPARTEMENTS MEUBLES', '4')
-charge(pd.read_csv('data/Db/Appartements_a_louer.csv'), 'APPARTEMENTS A LOUER', '5')
-charge(pd.read_csv('data/Db/Terrains.csv'), 'TERRAINS A LOUER', '6')    
+charge(pd.read_csv('Db/Appartements_meubles.csv'), 'APPARTEMENTS MEUBLES', '4')
+charge(pd.read_csv('Db/Appartements_a_louer.csv'), 'APPARTEMENTS A LOUER', '5')
+charge(pd.read_csv('Db/Terrains.csv'), 'TERRAINS A LOUER', '6')    
 st.write('                        ')
 
 
@@ -211,7 +211,7 @@ st.markdown("<h4 style='text-align: center; color: black;'>FORMULAIRE  D'EVALUAT
 st.markdown(""" <iframe src=https://ee.kobotoolbox.org/i/rgVkHnsd width="800" height="600"></iframe>""", unsafe_allow_html=True)
 
 # Les graphes
-DATA=pd.read_csv('data/Dn/Appartements_a_louer.csv')
+DATA=pd.read_csv('Dn/Appartements_a_louer.csv')
 for d in DATA.select_dtypes('number').columns:
     fig, axes = plt.subplots(1,2,figsize=(12,10))
     sns.histplot(DATA[d],bins=20,ax=axes[0])
