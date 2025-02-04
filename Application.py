@@ -8,11 +8,10 @@ import os
 import seaborn as sns
 
 st.markdown("""
-Cette application est conçu pour collecter les données sur le site [Expat-Dakar](https://www.expat-dakar.com/)
+ Cette application est conçu pour collecter les données sur le site [Expat-Dakar](https://www.expat-dakar.com/)
  en suivant ces liens :[Les appatements meublés](https://www.expat-dakar.com/appartements-meubles)--
 [Les appartements à louer](https://www.expat-dakar.com/appartements-a-louer)
 --[Les terrains à vendre](https://www.expat-dakar.com/terrains-a-vendre)
-
 """)
 
 df1=pd.read_csv('Dn/Appartements_a_louer.csv')
