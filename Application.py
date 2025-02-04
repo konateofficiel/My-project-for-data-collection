@@ -53,7 +53,7 @@ url2=f'https://www.expat-dakar.com/terrains-a-vendre?page=1'
 page=get(url2)
 soup=BeautifulSoup(page.text,'html.parser')
 soup2=soup.find_all('div',class_= 'listings-cards__list-item')
-st.code(soup2[0])
+st.write(soup2[0])
 
 
 st.markdown("<h1 style='text-align: center; color: black;'>PROJET DE DATA COLLECTION</h1>", unsafe_allow_html=True)
